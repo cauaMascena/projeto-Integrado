@@ -27,13 +27,19 @@
                 <th>TESTE DE EMAIL</th>
                 <th>TESTE DE CELULAR</th>
                 <th>
-                    <button class="btn btn-warning">Editar</button>
+
+                <a href="acoes.php?cod_pessoa=<?php echo $dados["cod_pessoa"], '&acao=editar'?>">EDITAR</a>
+                <a href="acoes.php?cod_pessoa=<?php echo $dados["cod_pessoa"], '&acao=delete'?>">EXCLUIR</a>
+
+            
+
+                    <!-- <button class="btn btn-warning">Editar</button>
 
                     <form action="" method="post" style="display: inline;">
                         <input type="hidden" name="id" value="">
                         <button class="btn btn-danger">Excluir</button>
                     </form>
-                    
+                     -->
                 </th>
             </tr>
     </tbody>
