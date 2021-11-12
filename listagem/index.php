@@ -1,53 +1,76 @@
 <?php
-    include('../componentes/header.php');
+
+session_start();
+
+if (isset($_SESSION['idSessao'])) {
+
+include('../componentes/header.php');
+include('../banco-de-dados/conexao.php');
+
+$sql = "SELECT * FROM tbl_dadosusuario";
+
+$resultado = mysqli_query($conexao, $sql);
+
+require("../banco-de-dados/funcoes.php");
+
+
+
 ?>
 
 <div class="container">
 
-    <br/>
-    
+    <br />
+
     <table class="table table-bordered">
 
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Sobrenome</th>
-            <th>E-mail</th>
-            <th>Celular</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-
-    <tbody>
+        <thead>
             <tr>
-                <th>1</th>
-                <th>TESTE DE NOME</th>
-                <th>TESTE DE SOBRENOME</th>
-                <th>TESTE DE EMAIL</th>
-                <th>TESTE DE CELULAR</th>
-                <th>
-
-                <a href="acoes.php?cod_pessoa=<?php echo $dados["cod_pessoa"], '&acao=editar'?>">EDITAR</a>
-                <a href="acoes.php?cod_pessoa=<?php echo $dados["cod_pessoa"], '&acao=delete'?>">EXCLUIR</a>
-
-            
-
-                    <!-- <button class="btn btn-warning">Editar</button>
-
-                    <form action="" method="post" style="display: inline;">
-                        <input type="hidden" name="id" value="">
-                        <button class="btn btn-danger">Excluir</button>
-                    </form>
-                     -->
-                </th>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>E-mail</th>
+                <th>Celular</th>
+                <th>Ações</th>
             </tr>
-    </tbody>
+        </thead>
 
-    </table>
+        <tbody>
 
-</div>
+        <?php
+                while ($pessoa = mysqli_fetch_array($resultado)) :
+
+                    $cod_pessoa = $pessoa['cod_pessoa'];
+                ?>
+                    <tr>
+                        <th><?= $pessoa['cod_pessoa'] ?></th>
+                        <th><?= $pessoa['nome'] ?></th>
+                        <th><?= $pessoa['sobrenome'] ?></th>
+                        <th><?= $pessoa['email'] ?></th>
+                        <th><?= $pessoa['celular'] ?></th>
+                        <th>
+                            <button onclick='javascript:window.location.href = "../cadastro/editar.php?cod_pessoa=<?= $cod_pessoa ?>" ' class="btn btn-warning">Editar</button>
+
+                            <form action="../cadastro/acoes.php" method="POST" style="display: inline;">
+                                <input type="hidden" name="cod_pessoa" value="<?= $cod_pessoa ?>">
+                                <input type="hidden" name="acao" value="deletar">
+                                <button class="btn btn-danger">Excluir</button>
+                            </form>
+
+                        </th>
+                    </tr>
+                <?php
+                endwhile;
+                ?>
+            </tbody>
+
+        </table>
+
+    </div>
 
 <?php
-    include('../componentes/footer.php');
+} else {
+    header('location: ../login/index.php');
+    echo ('USUÁRIO NÃO AUTENTICADO');
+}
+include('../componentes/footer.php');
 ?>

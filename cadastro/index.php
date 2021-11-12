@@ -1,5 +1,6 @@
 <?php
     include('../componentes/header.php');
+    require('../banco-de-dados/funcoes.php')
 ?>
 
 
@@ -11,6 +12,7 @@
             </div>
             <div class="card-body">
                 <form method="post" action="">
+                    <input type="hidden">
                     <input class="form-control" type="text" placeholder="Digite o nome" name="nome" id="nome">
                     <br />
                     <input class="form-control" type="text" placeholder="Digite o sobrenome" name="sobrenome" id="sobrenome">
