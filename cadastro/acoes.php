@@ -1,9 +1,7 @@
-
-
 <?php
 session_start();
 /*CONEXÃO COM BANCO DE DADOS*/
-require('../banco-de-dados/conexao.php');
+require('../database/conexao.php');
 
 /*FUNÇÃO DE VALIDAÇÃO*/
 function validaCampos(){
@@ -30,9 +28,10 @@ switch ($_POST['acao']) {
 
     case 'inserir':
 
+        //CHAMADA DA FUNÇÃO DE VALIDAÇÃO DE ERROS:
         $erros = validaCampos();
 
-        //VERIFICA SE EXISTEM ERROS:
+        //VERIFICAR SE EXISTEM ERROS:
         if(count($erros) > 0){
             $_SESSION["erros"] = $erros;
             header('location: index.php');

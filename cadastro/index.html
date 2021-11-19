@@ -1,9 +1,8 @@
 <?php
-session_start();
-if (isset($_SESSION['idSessao'])) {
-
     include('../componentes/header.php');
+    require('../banco-de-dados/funcoes.php')
 ?>
+
 
     <div class="container">
         <hr>
@@ -12,8 +11,8 @@ if (isset($_SESSION['idSessao'])) {
                 <h2>Cadastro</h2>
             </div>
             <div class="card-body">
-                <form method="post" action="./acoes.php">
-                    <input name="acao" type="hidden" value="inserir">
+                <form method="post" action="">
+                    <input type="hidden">
                     <input class="form-control" type="text" placeholder="Digite o nome" name="nome" id="nome">
                     <br />
                     <input class="form-control" type="text" placeholder="Digite o sobrenome" name="sobrenome" id="sobrenome">
@@ -30,11 +29,5 @@ if (isset($_SESSION['idSessao'])) {
 
 
 <?php
-
-} else {
-    header('location: ../login/index.php');
-    echo ('USUÁRIO NÃO AUTENTICADO');
-}
-
-include('../componentes/footer.php');
+    include('../componentes/footer.php');
 ?>

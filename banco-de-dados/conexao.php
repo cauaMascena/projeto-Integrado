@@ -5,7 +5,7 @@
 const HOST = 'localhost';
 const USER = 'root';
 const PASSWORD = 'bcd127';
-const DATABASE = 'db_dadosCadastro';
+const DATABASE = 'db_dadoscadastro';
 
 $conexao = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 

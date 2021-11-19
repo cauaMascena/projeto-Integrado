@@ -1,42 +1,40 @@
 <?php
-
 session_start();
 
 if (isset($_SESSION['idSessao'])) {
 
-include('../componentes/header.php');
-include('../banco-de-dados/conexao.php');
-
-$sql = "SELECT * FROM tbl_dadosusuario";
-
-$resultado = mysqli_query($conexao, $sql);
-
-require("../banco-de-dados/funcoes.php");
-
-
-
+    include('../componentes/header.php');
 ?>
 
-<div class="container">
+    <?php
 
-    <br />
+    require('../database/conexao.php');
 
-    <table class="table table-bordered">
+    $sql = "SELECT * FROM tbl_pessoa";
 
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Sobrenome</th>
-                <th>E-mail</th>
-                <th>Celular</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
+    $resultado = mysqli_query($conexao, $sql);
+    ?>
 
-        <tbody>
+    <div class="container">
 
-        <?php
+        <br />
+
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Sobrenome</th>
+                    <th>E-mail</th>
+                    <th>Celular</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <?php
                 while ($pessoa = mysqli_fetch_array($resultado)) :
 
                     $cod_pessoa = $pessoa['cod_pessoa'];
